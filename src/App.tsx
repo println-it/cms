@@ -239,12 +239,12 @@ export default function App() {
         }
         
         console.log("Allowing access to", user?.email);
-        // This is an example of retrieving async data related to the user
-        // and storing it in the user extra field.
-        const sampleUserData = await Promise.resolve({
-            roles: ["admin"]
-        });
-        authController.setExtra(sampleUserData);
+        // // This is an example of retrieving async data related to the user
+        // // and storing it in the user extra field.
+        // const sampleUserData = await Promise.resolve({
+        //     roles: ["admin"]
+        // });
+        // authController.setExtra(sampleUserData);
         return true;
     };
 
