@@ -16,21 +16,40 @@ import "typeface-rubik";
 import "typeface-space-mono";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCU9YGCgqgSh5dUAxNnc0vmrJP5GvbPwDU",
-  authDomain: "println-it.firebaseapp.com",
-  projectId: "println-it",
-  storageBucket: "println-it.appspot.com",
-  messagingSenderId: "819476371230",
-  appId: "1:819476371230:web:7f85d5c674cd48d9255b0f",
-  measurementId: "G-NXVLGKE3RX"
+    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
+    authDomain: process.env.REACT_APP_FIREBASE_AUTHDOMAIN,
+    projectId: process.env.REACT_APP_FIREBASE_PROJECTID,
+    storageBucket: process.env.REACT_APP_FIREBASE_STORAGEBUCKET,
+    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGINGSENDERID,
+    appId: process.env.REACT_APP_FIREBASE_APPID
 };
-
 
 const locales = {
     "en-US": "English (United States)",
     "es-ES": "Spanish (Spain)",
     "de-DE": "German"
 };
+
+type HeroSection = {
+    title: string
+    paragraph: string
+}
+
+const heroSectionSchema = buildSchema<HeroSection>({
+    name: "Herosection",
+    properties: {
+        title: {
+            title: "Title",
+            validation: { required: true },
+            dataType: "string"
+        },
+        paragraph: {
+            title: "Paragraph",
+            validation: { required: true },
+            dataType: "string"
+        }
+    }
+})
 
 type Product = {
     name: string;
@@ -239,12 +258,12 @@ export default function App() {
         }
         
         console.log("Allowing access to", user?.email);
-        // // This is an example of retrieving async data related to the user
-        // // and storing it in the user extra field.
-        // const sampleUserData = await Promise.resolve({
-        //     roles: ["admin"]
-        // });
-        // authController.setExtra(sampleUserData);
+        // This is an example of retrieving async data related to the user
+        // and storing it in the user extra field.
+        const sampleUserData = await Promise.resolve({
+            roles: ["admin"]
+        });
+        authController.setExtra(sampleUserData);
         return true;
     };
 

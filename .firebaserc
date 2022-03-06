@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "println-it"
-  }
+    "default": "println-it",
+    "dev": "println-dev"
+  },
+  "targets": {}
 }
